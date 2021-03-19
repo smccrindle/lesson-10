@@ -23,15 +23,18 @@
 		let requestURL = "https://smccrindle.github.io/comp1073module10/js/i-scream.json";
 		console.log(requestURL);
 		/* STEP 4: Create a new XHR object */
-
+		let request = new XMLHttpRequest();
 		/* STEP 5: Open a new request using the request() method */
-
+		request.open("GET", requestURL);
 		/* STEP 6: Set JavaScript to accept JSON from the server */
-
+		request.responseType = "json";
 		/* STEP 7: Send the request with the send() method */
-
+		response.send();
 		/* STEP 8: Add an event handler that listens for the onload event of the JSON file/object */
-
+		request.onload = function() {
+			let iScreamInc = request.response;
+			console.log(iScreamInc);
+		}
 		/* STEP 9: Build out the populateHeader() function */
 
 		/* STEP 10a: Assemble the showTopFlavors() function */
