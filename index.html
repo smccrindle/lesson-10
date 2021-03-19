@@ -35,6 +35,7 @@
 			let iScreamInc = request.response;
 			console.log(iScreamInc);
 			populateHeader(iScreamInc);
+			showTopFlavors(iScreamInc);
 		}
 		/* STEP 9: Build out the populateHeader() function */
 		function populateHeader(jsonObj) {
@@ -43,21 +44,41 @@
 			header.appendChild(headerH1);
 		}
 		/* STEP 10a: Assemble the showTopFlavors() function */
-
+		function showTopFlavors(jsonObj) {
 			// STEP 10b: Bind the JSON topFlavors object to a var
-
+			let topFlavors = jsonObj["topFlavors"];
 			// STEP 10c: Loop through the topFlavors object
-
+			for (let i = 0; i < topFlavors.length; i ++) {
 				// STEP 10d: build HTML elements for the content
-
+				let article = document.createElement("article");
+				let h2 = document.createElement("h2");
+				let image = document.createElement("image");
+				let p1 = document.createElement("p");
+				let p2 = document.createElement("p");
+				let list = document.createElement("ul");
 				// STEP 10e: Set the textContent property for each of the above elements (except the UL), based on the JSON content
-
+				h2.textContent = topFlavors[i]["name"];
+				image.setAttribute("src", "images/" + topFlavors[i]["image"]);
+				p1.textContent = "dessert type: " + topFlavors[i]["type"];
+				p2.textContent = "calories: " + topFlavors[i]["calories"];
 				// STEP 10f: Build a loop for the ingredients array in the JSON
-
+				let ingredients = topFlavors[i]["ingredients"];
+				for (let j = 0; j < ingredients.length; j ++) {
+					let listItem = document.createElement("li");
+					listItem.textContent = ingredients[j];
+					// add the ingredient to the UL
+					list.appendChild(listItem);
+				}
 				// STEP 10g: Append each of the above HTML elements to the ARTICLE element
-
+				article.appendChild(h2);
+				article.appendChild(image);
+				article.appendChild(p1);
+				article.appendChild(p2);
+				article.appendChild(list);
 				// STEP 10h: Append each complete ARTICLE element to the SECTION element
-
+				section.appendChild(article);
+			}
+		}
 		/* STEP 11: Change the URL in step 3 to point to the JSON file in the local /js folder */
 
 		// STEP 12: Add a 3rd flavour of ice cream to the local JSON file, making use of the /images/strawberry-sprinkle.svg image
